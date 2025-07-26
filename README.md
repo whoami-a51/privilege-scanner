@@ -1,4 +1,4 @@
-						Welcome to the Privilege Scanner README file!    
+					Welcome to the Privilege Scanner README file!    
 
 Privilege Scanner  
 =============
