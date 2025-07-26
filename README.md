@@ -14,7 +14,7 @@ Uso
 Clone o repositório:  
   
 ```git clone https://github.com/whoami-a51/privilege-scanner.git```  
-```cd privilege-scanner-main```  
+```cd privilege-scanner```  
 ```chmod +x privilege-scanner.sh```  
   
 Execute como usuário comum (não root):  
@@ -32,5 +32,5 @@ Como ele funciona
   - `pkexe`  
   - `sg`  
   - `crontab`   
-- Gera saída indicando se algum binário oferece escalada  
+- Gera saída indicando se algum binário oferece risco  
     
