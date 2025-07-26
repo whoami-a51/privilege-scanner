@@ -23,10 +23,9 @@
 
 Clone o repositório:  
   
-```bash  
-git clone https://github.com/whoami-a51/privilege-scanner.git  
-cd privilege-scanner-main  
-chmod +x privilege-scanner.sh  
+```git clone https://github.com/whoami-a51/privilege-scanner.git```  
+```cd privilege-scanner-main```  
+```chmod +x privilege-scanner.sh```  
   
 Execute como usuário comum (não root):  
 ```./privilege-scanner.sh```  
