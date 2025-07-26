@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Executar como usuário comum
-# Testa possíveis escaladas via binários SUID
+#Executar como usuário comum
+#Testa possíveis escaladas via binários SUID
 
 echo "[+] Buscando arquivos SUID no sistema..."
 
@@ -12,6 +12,46 @@ echo -e "\n[+] Testando binários conhecidos para escalada...\n"
 for bin in "${suid_bins[@]}"; do
     name=$(basename "$bin")
     case "$name" in
+        ksu)
+            echo "[*] Testando $bin com ksu -q -e /bin/sh (timeout 3s)..."
+            timeout 3 "$bin" -q -e /bin/sh -c 'id' &>/tmp/ksu.out
+            if grep -q "uid=0" /tmp/ksu.out; then
+                echo "[!] POSSÍVEL ESCALADA com $bin"
+            fi
+            ;;
+        su)
+            echo "[*] Testando $bin para su -c id (timeout 3s)..."
+            timeout 3 "$bin" -c 'id' &>/tmp/su.out
+            if grep -q "uid=0" /tmp/su.out; then
+                echo "[!] POSSÍVEL ESCALADA com $bin"
+            fi
+            ;;
+        sudo)
+            echo "[*] Testando $bin para sudo -l (timeout 3s)..."
+            timeout 3 "$bin" -l &>/tmp/sudo.out
+            ;;
+        mount)
+            echo "[*] Testando $bin com mount --fake-option (timeout 3s)..."
+            timeout 3 "$bin" --fake-option &>/tmp/mount.out
+            ;;
+        pkexec)
+            echo "[*] Testando $bin para pkexec /bin/sh (timeout 3s)..."
+            timeout 3 "$bin" /bin/sh -c 'id' &>/tmp/pkexec.out
+            if grep -q "uid=0" /tmp/pkexec.out; then
+                echo "[!] POSSÍVEL ESCALADA com $bin"
+            fi
+            ;;
+        sg)
+            echo "[*] Testando $bin com sg root -c id (timeout 3s)..."
+            timeout 3 "$bin" root -c 'id' &>/tmp/sg.out
+            if grep -q "uid=0" /tmp/sg.out; then
+                echo "[!] POSSÍVEL ESCALADA com $bin"
+            fi
+            ;;
+        crontab)
+            echo "[*] Testando $bin para listar crontab (timeout 3s)..."
+            timeout 3 "$bin" -l &>/tmp/crontab.out
+            ;;
         nmap)
             echo "[*] Testando $bin com nmap interactive shell..."
             echo "id" | timeout 3 "$bin" --interactive &>/tmp/nmap.out
@@ -49,4 +89,4 @@ for bin in "${suid_bins[@]}"; do
     esac
 done
 
-echo -e "\n[+] Fim do teste. Se não apareceram alertas, não há vulnerabilidades! 🛡️"
+echo -e "\n[+] Fim do teste. Se não apareceram alertas, não há vulnerabilidades!"
