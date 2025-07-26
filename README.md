@@ -34,4 +34,4 @@ Como ele funciona
   - `crontab`   
 - Gera saída indicando se algum binário oferece risco  
 
-É uma ferramenta de automatização. Você pode fazer isso manualmente rodando ```find / -user root -perm -4000 2>/dev/null``` e buscando os binários em https://gtfobins.github.io/. Por fim, teste todos os exploits pra tentar uma root shell.
+É uma ferramenta de automatização. Você pode fazer isso manualmente rodando ```find / -user root -perm -4000 2>/dev/null``` e buscando os binários em https://gtfobins.github.io/. Por fim, teste todos os exploits pra tentar escalar pra uma root shell.
