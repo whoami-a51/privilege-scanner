@@ -14,11 +14,11 @@ Uso
 Clone o repositório:  
   
 ```git clone https://github.com/whoami-a51/privilege-scanner.git```  
-```cd privilege-scanner```  
-```chmod +x privilege-scanner.sh```  
+```cd psuidaudit```  
+```chmod +x psuidaudit.sh```  
   
 Execute como usuário comum (não root):  
-```./privilege-scanner.sh```    
+```./suidaudit.sh```    
   
 Como ele funciona
 -----------
