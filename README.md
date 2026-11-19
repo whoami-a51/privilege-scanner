@@ -14,7 +14,7 @@ Uso
 Clone o repositório:  
   
 ```git clone https://github.com/whoami-a51/privilege-scanner.git```  
-```cd psuidaudit```  
+```cd privilege-scanner```  
 ```chmod +x psuidaudit.sh```  
   
 Execute como usuário comum (não root):  
